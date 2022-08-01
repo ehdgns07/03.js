@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>script</title>
+	<script>
+        document.getElementById('header').innerHTML = 'Header from inner Head Script';
+	</script>
+</head>
+<body>
+
+	<!--script 적용-->
+
+	<div id="header">Header</div>
+	<div id="section">section</div>
+	<!-- 내부 body 스크립트 -->
+	<script>
+        document.getElementById('header').innerHTML = 'Header from inner Body Script';
+	</script>
+
+	<!--	외부 스크립트     -->
+
+	<script src="step02_js.js"></script>
+
+</body>
+</html>
