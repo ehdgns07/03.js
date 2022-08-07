@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+  <script>
+	  //조건을 만족할 때 실행 순서를 정하는 구문
+		//random 분류
+
+	 const random = Math.random();
+      //0.5 이상인 경우인지 아닌지?
+	  if(random >= 0.5){
+          console.log(`${random} : biiiiiiiiiiiiiiiig`);
+	  }else{
+          console.log(`${random} : smaaaaaaaaaaaaaaal`);
+	  }
+
+      let num = 4;
+
+      switch (num){
+	      case 0 :
+              console.log("월");
+	          break;
+	      case 1 :
+              console.log("화");
+              break;
+	      case 2 :
+              console.log("수");
+	          break;
+          case 3 :
+              console.log("목");
+              break;
+          case 4 :
+              console.log("금");
+              break;
+          case 5 :
+              console.log("토");
+              break;
+          case 6 :
+              console.log("일");
+              break;
+
+	  }
+      let serialNumber;
+      while(true) {
+          serialNumber = String(prompt("주민번호 입력(-포함)"));
+        if (serialNumber.length < 14) {
+            alert("올바르지 않은 형식입니다");
+            continue;
+        }
+
+        if (serialNumber.includes("-") === false && serialNumber.charAt(6) !== "-") {
+            alert("-을 넣어 주세요!");
+	        continue;
+        }
+          const gender = serialNumber.charAt(7);
+          if (gender === '1' || gender === '3'){
+              alert("남자");
+          }else if(gender === '2' || gender === '4'){
+              alert("여자");
+          }else{
+              alert("...?")
+          }
+    }
+
+
+  </script>
+</body>
+</html>

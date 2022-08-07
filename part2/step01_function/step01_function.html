@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>function</title>
+</head>
+
+<body>
+  <script>
+  //선언
+  function add(x, y){
+      console.log(x + y);
+  }
+	//호출
+  add(1,2);
+
+  // add(1);
+  // parameter 에 데이터를 안넣어주면 undefined(null 아님)
+
+  //함수의 선언식
+  function getNames(){
+      console.log();
+  }
+
+  //함수의 표현식
+  let getAges = function (){
+      console.log();
+  }
+
+  function getSum(num1){
+      let result=0;
+      for (let num of num1) {
+	      result += num;
+      }
+
+      console.log(result);
+  }
+
+  let num1=[1,2,3,4,5,6,7,8,9,10];
+  getSum(num1);
+  </script>
+</body>
+</html>

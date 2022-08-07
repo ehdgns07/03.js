@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Object</title>
+</head>
+<body>
+<script>
+  //객체 리터럴 : {}
+  //
+  let obj1 = {key : 'value', key2 : 'value'};
+
+  console.log(obj1.key);
+
+  let obj2 = {};
+  console.log(obj2);
+
+  obj2.name = "it2";
+  console.log(obj2);
+
+  obj2.name2 = "it222";
+  console.log(obj2);
+  // 프로퍼티의 키는 변경되지 않는다;
+
+  //typeof
+  console.log(typeof(obj1));
+  console.log(typeof(obj2));
+
+  //valueof
+  console.log(obj1);
+  console.log(obj1.valueOf());
+
+  // 객체 생성자
+  let obj3 = new Object();
+  console.log(obj3 + " obj3");
+  obj3.name = "it";
+  console.log(obj3);
+
+  // step03 (사용자 정의)생성자
+  function Customer() {
+      console.log(this);
+      //this : 함수 내부에서는 자기 자신을 의미
+  }
+
+  let obj4 = new Customer();
+
+  function Car(color) {
+      this.brand = "it";
+      this.color = color;
+      this.price = 20000;
+      //property key : 문자열, 심볼
+      //property value : 모든 값'
+
+	  //객체 내부의 함수 = 메소드
+	  this.turnOn = function (){
+          console.log("시동이 켜진다");
+	  }
+  }
+  //생성자 함수를 통해 객체를 만들 때는 반드시 this.가 있어야한다.
+
+  let car = new Car();
+
+  console.log(car);
+
+  car.turnOn();
+
+  let myCar = new Car("gold");
+  let yourCar = new Car("red");
+  console.log(myCar);
+  console.log(yourCar);
+
+  //생성자 함수를 활용하여 Student 객체를 생성하려고 합니다.
+  //이떄, 내부 property로는 name(이름), grade(학년), id(학생id) 값이 존재하고
+  //기능으로는 이름과 학년, 그리고 id값을 모드 반환하는 printInfo 라는 메소드가 존재합니다
+  //grade를 수정할 수 있는 메서드를 만드세요
+  //주어진 건을 활용하여 Student 객체를 만들어 주세요
+  //Student(name, grade, id)
+
+  function Student(name, grade, id){
+      this.name = name;
+      this.grade = grade;
+      this.id = id;
+
+      this.getName = function (){
+          return this.name;
+      }
+
+      this.printInfo = function (){
+          console.log(this.name, this.grade, this.id);
+      }
+	  this.getId = () => {
+          return this.id;
+	  }
+      this.setGrade = function (grade){
+          this.grade = grade;
+      }
+  }
+   let student = new Student('donghun', '3', '200711657');
+
+  student.printInfo();
+  student.setGrade(7);
+  student.printInfo();
+
+  //for ~ in으로 객체의 property key를 출력
+
+  for (let studentKey in student) {
+	  console.log(studentKey);
+      console.log(`${studentKey} : ${student[studentKey]}`)
+  }
+
+  Student.age = 24;
+  console.log(Student.age);
+
+  student.age2 = 30;
+
+  //리터럴 일 때 프로퍼티 삭제
+  console.log(student);
+  let Cat = {
+      name : "navi",
+	  age : 3,
+	  weight : 3
+  }
+
+console.log(Cat);
+  delete Cat.weight;
+
+  console.log(Cat);
+
+  //함수 형태로 객체를 생성하는데 과연 화살표 문법으로도 생성 가능 할까?
+
+  let Test = (name, age, school) => {
+      this.name = name;
+	  this.age = age;
+      this.school = school;
+  }
+  // let choco = Test('choco', 3, 'high');
+  // console.log(choco.school); error
+
+  //객체 보호
+  const person = {
+      name : "it"
+  }
+	//isExtensible : 객체가 확장 가능한지 검증하는 메서드
+  console.log(Object.isExtensible(person));
+  //객체 확장
+  person.age = 24;
+
+  //객체 확장 막기
+  Object.preventExtensions(person);
+
+  person.id = "z-1234";
+
+  console.log(person);
+
+ //2. 밀봉
+  console.log(Object.isSealed(person));
+
+  person.age = 25;
+
+  console.log(person);
+
+  Object.seal(person);
+
+  person.age = 24;
+
+  console.log(person);
+
+  person.id = "x-1234";
+  delete person.name;
+  console.log(person);
+
+  //3. 동결
+  console.log(Object.isFrozen(person));
+
+  Object.freeze(person);
+
+  person.age = 26;
+
+  console.log(person);
+
+</script>
+</body>
+</html>

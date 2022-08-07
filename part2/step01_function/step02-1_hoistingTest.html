@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hoistingTest</title>
+</head>
+<body>
+<script>
+    //scope chain
+	outer();
+
+	var abc = '전역변수 abc';
+	function outer(){
+        var xyz = "outer 지역변수 xyz";
+        console.log(xyz);
+        console.log(abc);
+
+        function inner(){
+            var abc = "inner 지역 변수 abc";
+            console.log(abc);
+            console.log(xyz);
+        }
+
+        inner();
+	}
+
+    outer();
+
+    console.log(abc);
+    console.log(xyz);
+</script>
+
+</body>
+</html>

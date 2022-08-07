@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>context</title>
+</head>
+<body>
+<script>
+  //실행할 코드에 필요한 환경정보
+  //Record
+    console.log(drama);
+	var drama = "우영우";
+	console.log(drama);
+  //Outer
+
+  //Globlal variable
+  let tv = false;
+
+  console.log(tv);
+
+  function moveTo2F(){
+      let tv = true;
+
+      function moveTo3F(){
+          let cat = "navi";
+          // console.log(cat);
+          // console.log(tv);
+          // console.log(dog);
+      }
+
+      console.log(tv);
+
+	  moveTo3F();
+  }
+
+  moveTo2F();
+
+  //closer
+  const x = 1;
+  function outer(){
+      const x = 10;
+      const inner = function (){
+          // console.log(x);
+      };
+      return inner;
+  }
+
+  const result = outer();
+	result();
+///////////////////////////////////////////
+
+  //렉시컬 스코프 : 정적
+    const a = 10;
+    function lexical1(){
+        const a = 20;
+
+        lexical2();
+    }
+
+    function lexical2(){
+        // console.log(a);
+    }
+    lexical1();
+////////////////////////////////////////////
+  // 클로저의 활용
+  // ver1 전역변수의 문제점(값이 제대로 보전되지 않음)
+
+  // let num = 0;
+  //
+  // const increase = function ()
+  // {
+  //     //ver2 : 지역번수(문제점 : 함수가 호출될때마다 num 변수는 초기화가 됨
+  //     let num = 0;
+  //
+  //     return ++num;
+  // }
+  //
+  // console.log(increase()); //1
+  // num = 10; //전역변수의 문제를 발생시키는 코드
+  // console.log(increase()); //2
+  // console.log(increase()); //3
+
+  //ver3 클로저 활용(이전의 상태는 유지하되, increase 기능은 동작)
+	const increase = (function (){
+        let num = 0;
+
+        return function (){
+          return ++num;
+        };
+	}());
+
+  console.log(increase()); //1
+  num = 10;
+  console.log(increase()); //2
+  console.log(increase()); //3
+
+  //decrease
+
+  const decrease = (function (){
+      let num = 0;
+
+      return function (){
+          return --num;
+      }
+  }());
+
+  console.log(decrease());
+
+  //increase와 decrease를 합치려면?
+  // num의 최소값은 0으로 만들어라
+  const UpAndDown = (function (){
+      let num = 0;
+      return {
+          increase : function (){
+                  return ++num;
+          },
+
+	      decrease : function (){
+              //ver 1
+		      // if(num===0){
+              //     return num;
+		      // }
+              //     return --num;
+
+              //ver 2
+              return (num > 0 ? --num : 0);
+          },
+      }
+  }()
+  );
+
+  console.log('-----------------');
+  console.log(UpAndDown.increase());
+  console.log(UpAndDown.decrease());
+  console.log(UpAndDown.decrease());
+
+  //삼항연산자 ver1
+  (num > 0? function (){--num}() : function (){0}())
+
+  //삼항연산자 ver2
+  let age = 50;
+  age > 40 ?
+      (console.log('나이가 짱 많음'),(console.log('나이가 짱짱 많음')))
+	  : (console.log('나이가 짱 적음'),(console.log('나이가 짱짱 적음')))
+</script>
+</body>
+</html>

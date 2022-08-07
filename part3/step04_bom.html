@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BOM</title>
+</head>
+<body>
+
+
+  <script>
+	  // document.write(window.outerHeight);
+	  // document.write(window.self);
+	  // document.write(window.close());
+
+	  //--------------------------------------------------------------------
+
+	  //location
+	  // location.hash;
+      // setTimeout(()=>{location.href="https://www.naver.com"}, 3000);
+	  // location.reload(); // 새로 고침
+
+      //--------------------------------------------------------------------
+
+	  //history
+	  // document.write(history.length); //현재 페이지가 몇번 왔다갔다 했는지 기록 함.
+	  // history.go(1); //지정한 만큼 가는것
+	  // history.go();
+      // history.back();
+      // history.back(1); //지정한 만큼 돌아가는 것.
+
+      //--------------------------------------------------------------------
+	  //navigator
+	  // document.write(navigator.appName);
+	  // document.write(navigator.onLine); //boolean
+      // document.write(navigator.language);
+      // document.write(navigator.userAgent); //모바일 확인 가능
+
+	  //userAgent 예제
+	  const mobileKeys = ['ipone', 'ipad', 'Android']
+      for (let mobileKeysKey in mobileKeys) {
+	      if(navigator.userAgent.match(mobileKeys[mobileKeysKey])){
+              console.log("기록");
+	      }
+      }
+
+
+
+  </script>
+</body>
+</html>

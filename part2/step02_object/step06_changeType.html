@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>chnageType</title>
+</head>
+<body>
+<script>
+  //타입 변환
+  //명시적 변환 vs 암묵적 변환
+  let x = 10;
+  console.log(typeof x); //10 number
+
+  let y = x + '';       //암묵적 변환
+  console.log(typeof y);//10 string
+
+  let z = x.toString(); //명시적 변환
+  console.log(typeof z);//10 string
+
+  //암묵적 변환
+  //문자열 타입으로 변환
+  //1) 숫자를 문자로 변환
+  console.log(typeof (-120 + ''));
+  console.log(typeof (1 + ''));
+  console.log(typeof (NaN + ''));
+  console.log(typeof (Infinity + ''));
+
+  //2)객체 -> 문자열
+  console.log(typeof ({} + ''));
+  console.log(typeof ([] + ''));
+  console.log(typeof (function (){}, ''));
+
+  //3)boolean -> 문자열
+  console.log(typeof (true + ''));
+
+  //숫자 타입으로 변환
+  //1)문자열을 숫자로 변환
+  console.log(typeof (+'abc'))
+
+  //2)null&undefined -> 숫자
+  console.log(typeof (+null));
+  console.log(typeof (+undefined));
+
+  //3) 객체 -> 숫자
+  //Todo: typeof 빼고 출력해볼 것
+  console.log(typeof +{});
+  console.log(typeof +{name : 'it'});
+  console.log(typeof +[]);
+  console.log(typeof +[1,2]);
+
+  console.log(+false);
+  console.log(typeof +false);
+
+  //to boolean
+  //falsy : 거짓으로 평가되는 값(결과로 false가 나오는 것)
+  //false, undefined, null, 0, NaN, '' 만 falsy
+  if(0) console.log('0');
+  if('') console.log('');
+  if(1) console.log('1');
+  if(null) console.log('null');
+  if(NaN) console.log('NaN');
+
+  // 명시적 변환
+  console.log(Boolean(0));
+  console.log(Boolean(1));
+
+  console.log(Boolean({}));
+  console.log(Boolean({name : 'it'}));
+
+  console.log(Boolean(null));
+  console.log(Boolean(undefined));
+
+  //--------------------------------------------------------------
+  //단축 평가
+  console.log('Book' && 'Movie'); //movie
+  console.log('Book' || 'Movie'); //book
+
+  //단축 평가 결과
+	// true && SomethingValue --> SomeThingValue
+    // true || SomethingValue --> true
+	// false && SomethingValue --> false
+    // false || SomethingValue --> SomethingValue
+    // 조건문을 대신해 사용이 가능함
+
+  let isLogin = true;
+  let viewMessage;
+
+  if(isLogin){
+      viewMessage = "어서오세요";
+  }
+
+  // ->
+
+  viewMessage = isLogin && "어서오세요";
+
+  isLogin = false;
+  if(!isLogin){
+      viewMessage = "로그인에 실패 했습니다.";
+  }
+  // ->
+  viewMessage = isLogin || "로그인에 실패 했습니다.";
+
+
+</script>
+</body>
+</html>

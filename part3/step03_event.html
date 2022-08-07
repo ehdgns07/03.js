@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Event</title>
+</head>
+<style>
+	#section{
+		margin : 20px;
+		padding : 20px;
+		border : 3px solid black;
+	}
+
+	#link {
+		display : inline-block;
+		padding : 20px;
+		border: 3px solid black;
+	}
+
+</style>
+<body>
+<!--이벤트 객체-->
+<button id="btn">버튼</button>
+
+<hr>
+<!--이벤트 흐름-->
+<div id="section">
+	<a href="https://www.naver.com" id="link">link</a>
+</div>
+
+<hr>
+<ul id="menu">
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+</ul>
+
+  <script>
+
+	  //event(e)
+	  //DOM과 관련되어 발생한 이벤트 정보를 저장하는 객체
+	  const btn = document.getElementById('btn');
+      btn.addEventListener('click', (e)=>{
+          console.log('click');
+          console.log(e);
+          console.log(e.type); //발생한 이벤트의 타입
+          console.log(e.target); // 발생한 이벤트의 요소
+	      console.log(e.currentTarget); // 발생한 이벤트의 자식요소를 제외하고 활성화 된 요소만 가져옴
+	      console.log(e.eventPhase); // 1 : 캡쳐링, 2 : 현재 타겟, 3 : 버블링
+	      console.log(e.defaultPrevented); // boolean. 기본적인 이벤트의 실행 여부(ex] a tag : 이동 )
+      })
+
+	  //event flow
+	  const section = document.getElementById('section');
+      const link = document.getElementById('link');
+      section.addEventListener('click', (e)=>{
+          console.log(e.target);
+	      e.currentTarget.style.background = 'gold';
+      })
+
+	  link.addEventListener('click', (e)=>{
+          e.stopPropagation(); // 다른 요소로 이벤트 전파를 방지해줌, 버블링 방지
+          console.log(e.target);
+          e.currentTarget.style.background = 'tomato';
+          e.preventDefault(); // 기본동작을 막아준다.
+	  })
+
+	  const menu = document.getElementById('menu');
+      console.log(menu);
+
+      //ver1 다른 li태그들이 존재하거나 구조가 변하면 index 번호가 달라질 수 있음
+      const lis = document.getElementsByTagName('li');
+      console.log(lis);
+
+      console.log(lis[2]);
+
+      //ver2 : 존자하는 요소만큼 객체 생성을 해야함.
+	  const li3 = document.getElementById('li-3');
+      console.log(li3);
+
+      //ver3-1 :
+	  // menu.addEventListener('click', function (e){
+      //     console.log(e.target);
+      //     console.log(this);
+	  // })
+	  //ver3-2 :
+	  menu.addEventListener('click', (e)=>{
+          console.log(e.target);
+          console.log(this); //window -> 웹브라우저 창
+
+	  })
+      // 화살표 함수
+      // new 연산자로 객체 생성 불가능. 화살표 함수는 생성자를 가질 수 없기 때문.
+      // 내부에서 this라는 것을 기본적(자기자신)으로 활용 불가능.
+		//화살표 함수 관련 --> this
+	  //new 객체 생성이 되었다면 내부 this -> 자기자신
+	  //일반 함수에서 this를 호출하면 window를 가리킴
+	  function Test(){
+          this.name = 'name';
+          console.log(this);
+	  }
+
+      let test = new Test();
+
+
+
+
+  </script>
+</body>
+</html>

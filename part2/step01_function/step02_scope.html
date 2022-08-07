@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>scope</title>
+</head>
+<body>
+<script>
+	//스코프: 변수에 접근할 수 있는 범위
+
+	//var : 함수에서 선언한 변수는 함수내에서만 접근 가능
+
+	function varFunction(){
+        var x = 10;
+        console.log(x);
+	}
+
+    varFunction();
+
+    // console.log(x); error
+
+    if(true){
+        var y = 20;
+        let a = 50;
+        console.log(y);
+        console.log(a);
+    }
+
+    // console.log(a); error
+
+    console.log(y);
+
+    //let const : 블록에서 선언한 변수는 블록 내에서만 접근 가능
+
+	function kwdFunction(){
+        let z = 30;
+        const b = 40;
+
+        console.log(`${z} , ${b}`)
+	}
+
+    kwdFunction();
+    // console.log(`${z} , ${b}`) error
+
+	function hello() {
+        for(let i = 0 ; i < 10 ;i++){
+
+        }
+        // console.log(i); error
+	}
+
+    hello();
+
+	//-------------------------------------------
+	//호이스팅(hoisting)
+	console.log(age); // undefined
+	var age = 24;
+	console.log(age);
+    // 실행하기 전에 var 변수들을 미리 메모리에 올려놓는다.
+
+	// console.log(age1); // error
+    let age1 = 25;
+    console.log(age1);
+
+    //hoisting test
+    function hoistingFunction() {
+        console.log(age2);
+        var age2 = 26;
+        console.log(age2);
+    }
+
+	hoistingFunction();
+
+    //function hoisting test
+	printName();
+
+	function printName(){
+        console.log("busan");
+	}
+
+    printName();
+
+    // printName1(); error
+
+    var printName1 = function (){
+        console.log("IT");
+    }
+
+    printName1();
+</script>
+</body>
+</html>

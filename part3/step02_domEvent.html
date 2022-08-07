@@ -1,0 +1,134 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.hide {
+			display: none;
+		}
+
+		.invalid {
+			border: 2px solid red;
+		}
+
+	</style>
+</head>
+<body>
+
+<h1>Menu</h1>
+<div id="sub">설명</div>
+
+<hr>
+
+<!--<button id="check" class="tab" name="checkName" onclick="showContent()">조회</button>-->
+<button id="check" class="tab" name="checkName" onmouseover="">조회</button>
+<button id="transfer" class="tab" onclick="">이체</button>
+
+<ul class="checkService hide">
+	<li>계좌조회</li>
+	<li>수표조회</li>
+	<li>오픈뱅킹</li>
+</ul>
+<div id="content"></div>
+<div id="content2"></div>
+
+<h3>이메일</h3>
+<input type="email" name="email" id="email">
+<div id="invalid"></div>
+<div id="output"></div>
+
+<hr>
+<h3>대문자만 입력</h3>
+<div>
+<label for="">쿠폰입력</label>
+<input type="text" id="coupon">
+</div>
+
+	<script>
+		const sub = document.getElementById('#sub');
+
+        //step01 인라인 방식
+		//조회 버튼 '클릭' -> div#content 글자 출력
+
+		function showContent() {
+			document.querySelector('#content').innerHTML = "조회 서비스";
+		}
+
+        //step02 프로퍼티 방식
+
+		//같은 이벤트는 중복 등록이 불가능하다
+		const check = document.querySelector('#check');
+        check.onclick = function showContent() {
+            document.querySelector('#content').innerHTML = "조회 서비스";
+        }
+
+        check.onclick = function showContent() {
+            document.querySelector('#content2').innerHTML = "조회 서비스2";
+        }
+
+        check.onmouseover = function test(){
+            console.log('test');
+        }
+
+        //step 03 : addEventListener
+		check.addEventListener('click', () =>
+		document.querySelector('#content').innerHTML = "조회 서비스");
+        check.addEventListener('click', () =>
+        document.querySelector('#content2').innerHTML = "조회 서비스2");
+
+        //이벤트
+		//Mouse
+		//click, dblclick, mouseup, mousedown, mouseover
+		// ex 서비스
+		check.addEventListener('mousedown', function mouseDown(){
+            console.log('mouse down');
+		})
+
+		//mouse over
+		const checkService = document.querySelector('.checkService');
+        check.addEventListener('mouseover', function mouseOver(){
+            checkService.classList.remove('hide');
+        })
+        check.addEventListener('mouse', function mouseOver(){
+            checkService.classList.add('hide');
+        })
+
+		//focus
+		//이메일 입력값 --> @가 포함이 되면 유효한 이메일이라고 가정
+		const email = document.querySelector('#email');
+        const invalid = document.getElementById('invalid');
+        const output = document.getElementById('output');
+
+        email.addEventListener('focus', function (){
+            if(this.classList.contains('invalid')){
+                email.classList.remove('invalid');
+                invalid.innerHTML = '';
+            }
+        })
+
+		//blur
+		email.addEventListener('blur', function (){
+            if(!email.value.includes('@')){
+                email.classList.add('invalid');
+                invalid.style.color = 'red';
+                invalid.innerHTML = "올바른 이메일을 입력하세요";
+                output.innerHTML = '';
+            }
+            output.innerHTML = '';
+		})
+
+	//
+		const coupon = document.getElementById('coupon');
+        coupon.addEventListener('keyup', () =>{
+            coupon.value = coupon.value.toUpperCase();
+            console.log(coupon.value);
+        });
+
+
+
+	</script>
+</body>
+</html>

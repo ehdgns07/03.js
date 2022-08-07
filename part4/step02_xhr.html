@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Xhr</title>
+</head>
+<body>
+<script>
+    // JSON : JavaScript Object Notation
+
+    const student = {
+        name : 'it',
+	    age  : 30,
+	    courses : ['linux', 'html/css', 'js']
+    }
+	console.log(student);
+
+    //객체를 문자열로 변경
+    let jsonStudent = JSON.stringify(student);
+
+    console.log(jsonStudent);
+
+    //문자열을 객체로 변경
+    let jsonParse = JSON.parse(jsonStudent);
+
+    console.log(jsonParse);
+
+    //json을 사용할때에는 반드시 큰 따옴표로 해야한다.
+    let obj1 = { key1 : 'v1' };
+    let obj2 = "{ 'key2' : 'v2' }";
+    let obj3 = '{ "key3" : "v2" }';
+    let obj4 = "{ \"key4\" : \"v4\" }";
+
+    console.log(obj1);
+    console.log(obj2);
+
+    // obj2 = JSON.parse(obj2);
+    obj3 = JSON.parse(obj3);
+    obj4 = JSON.parse(obj4);
+    // console.log(obj2.key2);
+    console.log(obj3.key3);
+    console.log(obj4.key4);
+
+    //xhr
+
+	function ajaxTest(){
+        var xhr = new XMLHttpRequest();
+        const url = "https://jsonplaceholder.typicode.com/users";
+        xhr.open('GET', url, true);
+
+        //클라이언트랑 서버간에 통신 할 때 중간 단계에 대한 변화를 감지하여 자동으로 실행 되는 로직
+        xhr.onreadystatechange = function (){
+            if(this.readyState === 4) {
+                console.log(this.readyState);
+                console.log(this.status);
+
+                console.log(this.response);
+            }
+        }
+
+	xhr.send('');
+	}
+    ajaxTest();
+
+    //test logic
+
+
+    // let test1 = (function ajaxTest(){
+    //     let test;
+    //     var xhr = new XMLHttpRequest();
+    //     const url = "https://jsonplaceholder.typicode.com/users";
+    //     xhr.open('GET', url, true);
+    //     xhr.send('');
+    //     //클라이언트랑 서버간에 통신 할 때 중간 단계에 대한 변화를 감지하여 자동으로 실행 되는 로직
+    //     xhr.onreadystatechange = function (){
+    //         if(this.readyState === 4) {
+    //             // console.log(this.readyState);
+    //             // console.log(this.status);
+    //             test = this.response;
+    //             // console.log(this.response);
+    //             test = JSON.parse(test);
+    //             // console.log(test);
+    //         }
+    //         return {
+    //             send : xhr.onreadystatechange
+    //         }
+    //     }
+	//
+	//
+    // }())
+    // console.log(test1.send);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>callBy</title>
+</head>
+<body>
+  <script>
+
+	let height = 175;
+    let number = height;
+
+    console.log(height);    //175
+    console.log(number);    //175
+
+	height = 183;
+
+    console.log(height); //183
+    console.log(number); //175
+
+	// 실제 내용 + type 비교 ===
+
+
+	//shallow copy
+	let nums = [1,2,3,4,5];
+
+    console.log(nums);
+
+    let numbers = nums;
+    nums[1] = 0;
+
+    console.log(numbers);
+
+    numbers[0] = 10;
+
+    console.log(nums);
+
+    //deep copy
+	let deepNumbers = [];
+
+    for(let i = 0; i < nums.length; i++){
+        deepNumbers[i] = nums[i];
+    }
+
+    deepNumbers[4] = 300;
+
+    console.log(nums);
+
+    // ex2 객체 복사
+	console.log("---08.03---")
+	let suv = {
+        color : 'black',
+		cc : 3000,
+	}
+	let dev = {
+        name : 'it',
+        age : 24,
+        car : suv
+    }
+
+    let devops = dev;
+
+    console.log(dev);
+    console.log(devops);
+    console.log(Object.is(dev, devops));
+    console.log(Object.is(dev.car, devops.car));
+
+    //깊은 복사 : Object.assigin
+	let devops2 = Object.assign({},dev);
+	console.log(dev,devops2);
+    //깊은 복사를 하더라도 원본 내부에 다른 객체가 있을 경우 제대로 복사 되지 않는다.
+	//하위 객체도 깊은 복사를 하려면?
+
+	let devops3 = JSON.stringify(dev);
+    console.log(typeof devops3);
+    devops3 = JSON.parse(devops3); // json을 객체로 변환
+	console.log(typeof devops3);
+	console.log(devops3);
+    console.log(dev);
+
+	console.log(Object.is(devops3, dev))
+
+	//깊은 복사2
+    let deepNumbers2 = JSON.parse(JSON.stringify(nums));
+
+    //깊은 복사3
+	let deepNumbers3 = nums.filter(() => true);
+
+  </script>
+</body>
+</html>

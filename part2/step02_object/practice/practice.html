@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>practice</title>
+</head>
+<body>
+<script>
+	//1번 다음 배열에서 400, 500를 삭제하는 code를 입력하세요.
+    var nums = [400, 500, 100, 200, 300, 400, 500];
+
+	let test = nums.reduce((arr, cur) => {
+
+			if(cur !== 400 && cur !== 500){
+                arr.push(cur);
+			}
+
+            return arr;
+        },  []
+    );
+
+    console.log(test);
+	//2번 <pass>부분에 배열 내장함수를 이용하여 코드를 입력하고 다음과 같이 출력되게 하세요.
+	//[200, 100, 10000, 300]
+
+    var arr = [200, 100, 300];
+    arr.splice(2,0,10000);
+    // console.log(arr);
+
+    //3번
+    //출력 : 2022/08/03 11:34:27
+    var year = '2022';
+    var month = '08';
+    var day = '03';
+    var hour = '11';
+    var minute = '34';
+    var second = '27';
+
+    var result = year.concat( `/${month}/${day}/ ${hour}:${minute}:${second} `)
+
+	// console.log(result);
+
+    //4번
+	// 우리 태양계를 이루고 있는 행성은 수성, 금성, 지구, 화성, 목성, 토성, 천왕성, 해왕성으로 총 8개 입니다.
+	// 저희는 우리 태양계의 n번째 행성이 무엇인지 알고 싶습니다.
+    // 입력으로 행성의 순서를 나타내는 숫자 n이 입력됩니다.
+    // 출력으로 그 순서에 해당하는 행성의 이름을 출력해 주세요.
+    // 예를들어 1이 입력되면, 첫번째 행성인 수성이 출력됩니다.
+
+	// const solarSystem = ['수성','금성','지구','화성','목성','토성','천왕성','해왕성']
+	// let number;
+	// number = prompt();
+	//
+    // console.log(solarSystem[number-1]);
+
+    //5번
+	/* 영희는 친구와 게임을 하고 있습니다.
+	   서로 돌아가며 랜덤으로 숫자를 하나 말하고 그게 3의 배수이면 박수를 치고 아니면 그 숫자를 그대로 말하는 게임입니다.
+	   입력으로 랜덤한 숫자 n이 주어집니다.
+       만약 그 수가 3의 배수라면 '짝'이라는 글자를, 3의 배수가 아니라면 n을 그대로 출력해 주세요. */
+	let randomNum;
+	// randomNum = prompt();
+    if(randomNum % 3 === 0 ){
+        // console.log('짝');
+    }else{
+        // console.log(randomNum);
+    }
+
+    //6번
+	//문장이 입력되면 거꾸로 출력하는 프로그램을 만들어 봅시다.
+	// let string = prompt();
+    // let char = [];
+    //
+    // for (let i = 0; i < string.length; i++) {
+	//     char.push(string[i]);
+    // }
+	//
+    // char.reverse();
+	//
+    // string = '';
+	//
+    // for (let i = 0; i < char.length; i++) {
+    //     string = string.concat(char[i]);
+    // }
+	//
+    // alert(string);
+
+//	7번
+//     우리 태양계를 이루는 행성은 수성, 금성, 지구, 화성, 목성, 토성, 천왕성, 해왕성이 있습니다.
+//     이 행성들의 영어 이름은 Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune입니다.
+//     **행성의 한글 이름을 입력하면 영어 이름을 반환하는 프로그램**을 만들어 주세요.
+
+	// let planet = prompt('행성이름을 입력해 주세요');
+	//
+    // switch (planet){
+	//     case '수성':
+    //         planet = 'Mercury';
+    //         break;
+    //     case '금성':
+    //         planet = 'Venus';
+    //         break;
+    //     case '지구':
+    //         planet = 'Earth';
+    //         break;
+    //     case '화성':
+    //         planet = 'Mars';
+    //         break;
+    //     case '목성':
+    //         planet = 'Jupiter';
+    //         break;
+    //     case '토성':
+    //         planet = 'Saturn';
+    //         break;
+    //     case '천왕성':
+    //         planet = 'Uranus';
+    //         break;
+    //     case '해왕성':
+    //         planet = 'Neptune';
+    //         break;
+    // }
+	//
+    // alert(planet);
+
+	// 8번
+	// 입력으로 문자열이 주어지면 2-gram으로 출력하는 프로그램을 작성해 주세요.
+	// let input = prompt();
+	//
+    // for (let i = 0; i < input.length-1; i++) {
+	//     console.log(input[i], input[i+1]);
+    // }
+
+    //9번
+    // 진구는 영어 학원 아르바이트를 하고 있습니다. 반 아이들은 알파벳을 공부하는 학생들인데 오늘은 대문자 쓰기 시험을 봤습니다.
+    // 알파벳 하나만을 입력하고 그 알파벳이 대문자이면 YES를 아니면 NO를 출력하는 프로그램을 만들어 주세요.
+	// let input2 = prompt();
+	// let isUpperCase = input2.toUpperCase();
+	//
+    // if(isUpperCase === input2){
+    //     console.log('Yes');
+    // }else{
+    //     console.log('No');
+    // }
+
+    //10번
+    // 새 학기가 되어 이름을 가나다 순서대로 배정하고 번호를 매기려고 합니다.
+    // 데이터에 입력된 이름을 아래와 같이 출력해 주세요.
+
+    // let students = ['강권모','강보라','김경률','김경욱','김민욱','김재선','김현민','박상민','박수용','박주용','배병서','배진경', '손용민','이광석','이동훈','정주현','정혜지','주동석','최정현','홍민향','황동하']
+	//
+	// students.sort();
+	//
+    // for (let i = 0; i < students.length; i++) {
+	//     console.log(`번호 : ${i+1} 이름 : ${students[i]} `)
+    // }
+
+    //11번
+    // 한국 대학교의 김한국 교수님은 학생들과 친해지기 위해서 딸에게 줄임말을 배우기로 했습니다.
+    // 딸은 '복잡한 세상 편하게 살자'라는 문장을 '복세편살'로 줄여 말합니다.
+    // 교수님이 줄임말을 배우기 위해 아래와 같이 어떤 입력이 주어지면 앞 글자만 줄여 출력하도록 해주세요.
+    // 입력은 한글 혹은 영어로 입력되며, 띄어쓰기를 기준으로 하여 짧은 형태로 출력합니다.
+
+	// let input3 = prompt();
+    // let abbreviation = input3.split(' ');
+	// let output = '';
+	//
+    // for (const string of abbreviation) {
+    //     output = output.concat(string[0]);
+    //     console.log(string[0]);
+    // }
+	//
+    // alert(output);
+
+
+</script>
+</body>
+</html>

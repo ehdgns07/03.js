@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>date</title>
+</head>
+<body>
+  <script>
+  console.log(new Date(2022, 7, 3, 11, 0, 0, 0));
+  console.log(Date.now());
+  let today = new Date();
+  console.log(today);
+  console.log(today.getFullYear());
+  console.log(today.getMonth());
+  console.log(today.getDay());
+  console.log(today.getHours());
+
+  let today2 = new Date('2022/08/03/11:05');
+  console.log(today2);
+  console.log(today2.toDateString());
+  console.log(today2.toTimeString());
+
+  console.log(Date.parse('2022-01-01'));
+
+  </script>
+</body>
+</html>

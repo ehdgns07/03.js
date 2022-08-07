@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM</title>
+</head>
+<body>
+	<h1 id="title1" class="font30">제목1</h1>
+	<h1 id="title2" class="font30">제목2</h1>
+	<h1 id="title3" class="font30">제목3</h1>
+
+	<div id="aTag">	</div>
+
+<!--	노드-->
+	<div id="dom">
+		<h1>Plus-Minus</h1>
+		<div id="result">0</div>
+		<button id="plus" class="btn">+1</button>
+		<button id="minus" class="btn">-1</button>
+	</div>
+
+  <script>
+	  //DOM :
+	  // document 객체
+	  const title1 = document.getElementById('title1');
+	  const title2 = document.getElementById('title2');
+	  const title3 = document.getElementById("title3");
+
+      title1.style.color = 'gold';
+
+      const titles = document.getElementsByTagName('h1');
+
+      titles.item(2).style.color = 'tomato';
+
+      const fonts = document.getElementsByClassName('font30');
+      fonts[0].style.fontSize = '30px';
+      fonts[1].style.fontSize = '30px';
+      fonts[2].style.fontSize = '30px';
+
+      const fontss = document.querySelector(".font30");
+      const h1 = document.querySelector("#title1");
+
+      //Element 생성 추가 삭제 etc.
+
+      const aTag = document.getElementById('aTag');
+      aTag.innerHTML = '<a href="#">링크</a>'
+      // aTag.innerText = '<a href="#">링크</a>'
+
+	  const h3 = document.createElement('h3');
+      h3.innerHTML = 'hi';
+      document.body.appendChild(h3);
+
+      //Attribute
+	  h3.setAttribute('data-id', 'test');
+
+      //textContent
+	  // h3.textContent = "textContent";
+
+	  //child
+	  const h2 = document.createElement('h2');
+      h2.innerHTML = "changed";
+	  document.body.replaceChild(h2, h3);
+
+      //Node
+      // 부모 / 조상(상위)
+	  // 자식 / 후손(하위)
+	  // 형제 / 자매
+		console.log(document.childNodes[1]);
+		console.log(document.childNodes[1].childNodes);
+        const result = document.getElementById('result');
+        console.log(result.previousSibling);
+        console.log(result.nextSibling);
+
+	   // const plus = function() {
+       //     return function (){
+       //         return ++result.innerHTML;
+       //     }
+	   // }
+
+       const btnPlus = document.getElementById("plus");
+       const btnMinus = document.getElementById("minus");
+
+       const number = (function getNumber(){
+           let number = result.innerHTML;
+
+           return {
+                plus :  function (){
+
+	                return result.innerHTML = ++number;
+                },
+
+                minus : function (){
+
+                    return result.innerHTML = --number;
+
+                }
+           }
+       }())
+
+      btnPlus.addEventListener('click', number.plus);
+      btnMinus.addEventListener('click', number.minus)
+  </script>
+</body>
+</html>
