@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>class</title>
+</head>
+<body>
+<script>
+  // function Animal(){
+  //     this.name = name;
+  //     this.speed = speed;
+  //
+  //     function run(speed){
+  //         console.log(this.speed+ "로 run()실행");
+	//   }
+  //
+  //     stop = function (name) {
+  //         console.log(this.name + "이 멈춤");
+  //     }
+  // }
+
+  class Animal {
+      constructor(name) {
+          this.name = name;
+          this.speed = 0;
+      }
+
+      run(speed){
+              console.log(this.speed+ "로 run()실행");
+        }
+
+      stop = function (name) {
+                   console.log(this.name + "이 멈춤");
+               }
+  }
+
+
+  // const animal = new Animal();
+  //
+  // const cat = new Animal();
+
+  //extends
+
+  class Cat extends Animal{
+
+      sleep(){
+          console.log("12시간 이상 잠")
+      }
+  }
+
+  const cat = new Cat("나비");
+  console.log(cat);
+  cat.sleep();
+  cat.run(30);
+  cat.stop();
+</script>
+
+</body>
+</html>

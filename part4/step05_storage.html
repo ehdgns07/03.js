@@ -1,0 +1,28 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//웹 스토리지(로컬 스토리지, 세션 스토리지) : 브라우저에 저장하는 저장공간.
+
+		//localStorage
+		localStorage.setItem('k1', 'v1');
+		localStorage.setItem('k2', 'v2');
+
+        // console.log("use method : " + localStorage.getItem('k1'));
+        // console.log("direct access : " + localStorage.k1);
+
+
+        //데이터 출력
+        for (let i = 0; i < localStorage.length; i++) {
+	        let key = localStorage.key(i);
+            console.log(localStorage.getItem(key));
+        }
+	</script>
+</body>
+</html>

@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>callBack</title>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
@@ -94,16 +95,245 @@
 
   const promise1 = new Promise((resolve,reject) => {
       setTimeout(()=> {
-          console.log('promise');
+          // console.log('promise');
           resolve('data');
       })
   })
 
   promise1
-	  .then(v => console.log(v))
-	  .then(() => console.log(2))
-	  .then(() => console.log(3))
-	  .catch(err => {console.error(err)})
+	  // .then(v => console.log(v))
+	  // .then(() => console.log(2))
+	  // .then(() => console.log(3))
+	  // .catch(err => {console.error(err)})
+	  // .finally(()=>console.log('무조건 실행되는 코드 블럭'));
+
+//try catch
+  try {
+  setTimeout(()=>{
+      // nuSuchElement;
+  },1000)
+  }catch (err){
+	  console.log(error);
+  }
+
+  // fetch
+  fetch("https://jsonplaceholder.typicode.com/users")
+  .then((response)=> response.json())
+  // .then((users) => console.log(users))
+
+   fetch("https://jsonplaceholder.typicode.com/posts/1")
+  .then((response) => response.json())
+  .then((post) => post.userId)
+  .then((userId => "https://jsonplaceholder.typicode.com/users/"+ userId))
+  .then(url => fetch(url))
+  .then(response => response.json())
+  // .then(user => console.log(user))
+
+
+  //post
+  fetch("https://jsonplaceholder.typicode.com/posts/", {
+      method : "POST",
+	  headers : {
+          "Content-Type" : "application/json"
+	  },
+      body : JSON.stringify({
+	      userId : 1,
+	      title : 1000,
+	      body : "test"
+      })
+
+  })
+	  .then(response => response.json())
+	  // .then(data => console.log(data))
+
+  //put
+  fetch("https://jsonplaceholder.typicode.com/posts/1", {
+      method : "PUT",
+      headers : {
+          "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({
+          userId : 1,
+          title : 1000,
+          body : "test"
+      })
+
+  })
+      .then(response => response.json())
+      // .then(data => console.log(data))
+
+  //delete
+  fetch("https://jsonplaceholder.typicode.com/posts/1", {
+      method : "DELETE",
+      headers : {
+          "Content-Type" : "application/json"
+      }
+
+  })
+      .then(response => response.json())
+      // .then(data => console.log(data))
+
+  //axios
+	axios.get("https://jsonplaceholder.typicode.com/users")
+		 .then(response => response.data[3])
+		 // .then((data) => console.log(data))
+
+  //post
+
+    axios.post("https://jsonplaceholder.typicode.com/posts/",{
+        headers : {
+            "Content-Type" : "application/json"
+        },
+	    body : {
+            userId : 1,
+		    title : "test",
+		    body : "test1"
+	    }
+    })
+	    .then(response => response.data)
+	    // .then(data => console.log(JSON.stringify(data)))
+	    // .catch(error => console.log(error))
+
+  //put
+  axios.put("https://jsonplaceholder.typicode.com/posts/1",{
+      headers : {
+          "Content-Type" : "applicaton/json"
+      },
+      body : {
+          userId : 1,
+	      title : "modified",
+	      body : "test2"
+      }
+  })
+	  .then(response => response.data)
+	  // .then(data => console.log(JSON.stringify(data)));
+
+  console.log("------------------------------------------------------")
+  // 객체 비구조화 할당
+  const obj = {
+      a : 1,
+	  b : 2,
+	  name : "it",
+	  c : 10
+  }
+
+    console.log(obj.b);
+
+	let {a, b, name, c=0} = obj;
+    console.log(name);
+    console.log("1111111111111111111111111111111111111111111111111111111111111")
+    console.log("abcde"+c);
+
+    name = "it2";
+
+	//메모리 구조상 같은 값을 가지는가 ?
+    console.log(name);
+    console.log(obj.name);
+
+    //배열 비구조화 할당
+  const arr = [1,2];
+  const [one, two] = arr;
+  console.log(one);
+  console.log(two);
+
+  const objArr = {
+      info : {
+          private : {
+              name : "js",
+	          age : "24",
+	          hobbies : ['programming, algorithm']
+          },
+          public : {
+              purpose : 'destructure test'
+          }
+      }
+  }
+
+  // const {name, age, hobbies} = objArr.info.private;
+  // console.log(name);
+  //
+  // const newObj = {
+  //     name,
+	//   age,
+	//   hobbies
+  // }
+
+  // console.log(newObj);
+
+  //rest(...)
+  //배열
+
+  const avengers = ['토르', '스파이더맨', '닥터 스트레인지'];
+  let totalAvengers = [...avengers, '미스제인'];
+
+  // console.log(totalAvengers);
+
+  //객체
+  //한국과 관련된 정보를 담고 있는 객체
+  //대륙
+  const planet = {
+      continent : 'Aisa'
+  }
+  const country = {
+      ...planet,
+	  countryName : 'ROK'
+  }
+
+  const city = {
+	  ...country,
+	  region : 'Busan'
+  }
+
+  console.log(planet);
+  console.log(country);
+  console.log(city);
+
+  //함수
+  //함수의 파라미터를 늘이고 싶을 때.
+  function sum(...rest){
+      // let sum = 0;
+      // rest.forEach(num => sum = sum+num);
+
+      return rest.reduce((acc, cur) => {
+          return acc+cur;
+      }, 0)
+  }
+
+  console.log(sum(1,2,3,23,4,5,3,2,1,4,5,2));
+
+  console.log('--콜백 함수와 비동기--')
+  function fetchData(studentId){
+      let student;
+
+      setTimeout(function (){
+         student = {
+             id : studentId
+         }
+      }, 10);
+
+	  return student;
+  }
+	//비동기를 통해서 결과를 출력
+  const student1 = fetchData(1);
+  console.log(student1);
+  // 결과 undefined
+  // 해결? callback!
+
+  function fetchData1(studentId, callback){
+      let student;
+
+      setTimeout(function (){
+          student = {
+              id : studentId
+          }
+          callback(student);
+      }, 10);
+
+  }
+  //비동기를 통해서 결과를 출력
+  const student2 = fetchData1(1, function (student){
+      console.log(student);
+  });
 
 
 </script>
